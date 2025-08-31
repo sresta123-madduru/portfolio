@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Contact - Madduru Sresta</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+  <style>
+    /* Extra Styling for Contact Page */
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background: #f4f9fc;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+
+    header {
+      text-align: center;
+      padding: 20px;
+      background: linear-gradient(135deg, #0ea5e9, #92b0f2);
+      color: white;
+    }
+
+    header img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 4px solid white;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      margin-bottom: 10px;
+    }
+
+    nav a {
+      margin: 0 12px;
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    section {
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 20px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #6d95ea;
+    }
+
+    .card {
+      background: white;
+      padding: 20px;
+      margin: 20px 0;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    .card h3 {
+      margin-bottom: 15px;
+      color: #0ea5e9;
+    }
+
+    .card p, .card a {
+      font-size: 1rem;
+      color: #444;
+    }
+
+    .card a {
+      color: #0ea5e9;
+      font-weight: 600;
+    }
+
+    form input, form textarea {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 1rem;
+      outline: none;
+      transition: 0.3s;
+    }
+    form input:focus, form textarea:focus {
+      border-color: #0ea5e9;
+      box-shadow: 0 0 6px rgba(14,165,233,0.3);
+    }
+
+    form button {
+      background: #0ea5e9;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    form button:hover {
+      background: #2563eb;
+    }
+
+    #form-status {
+      margin-top: 10px;
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+
+    footer {
+      text-align: center;
+      padding: 15px;
+      background: #2563eb;
+      color: white;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="images/passportphoto.jpg" alt="Madduru Sresta">
+    <h1>Madduru Sresta</h1>
+    <p>Final-Year CSE Student | Aspiring Software Engineer</p>
+    <nav>
+      <a href="index.html">About</a>
+      <a href="education.html">Education</a>
+      <a href="skills.html">Skills</a>
+      <a href="projects.html">Projects</a>
+      <a href="certifications.html">Certifications</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <section>
+    <h2>Get in Touch</h2>
+    <div class="card">
+      <p><strong>Email:</strong> <a href="mailto:maddurusresta@gmail.com">maddurusresta@gmail.com</a></p>
+      <p><strong>Phone:</strong> +91 93460 76296</p>
+      <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/sresta-madduru-98a9b629a/">linkedin.com/in/sresta-madduru</a></p>
+      <a href="resume.pdf" class="btn" download style="display:inline-block; margin-top:10px; background:#2563eb; color:white; padding:10px 18px; border-radius:8px; text-decoration:none;">⬇ Download Resume</a>
+    </div>
+
+    <div class="card">
+      <h3>Send me a message</h3>
+      <form id="contact-form" action="https://formspree.io/f/mpwjrzvk" method="POST">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="_replyto" placeholder="Your Email" required>
+        <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+        <button type="submit">📩 Send Message</button>
+      </form>
+      <p id="form-status"></p>
+      <p style="font-size:0.85rem;color:#777;">Powered by <a href="https://formspree.io/" target="_blank">Formspree</a></p>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 Madduru Sresta | Portfolio Website</p>
+  </footer>
+
+  <!-- Success/Error Message Script -->
+  <script>
+    const form = document.getElementById("contact-form");
+    const status = document.getElementById("form-status");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      status.textContent = "⏳ Sending...";
+      const data = new FormData(form);
+      const res = await fetch(form.action, {
+        method: form.method,
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      });
+      if (res.ok) {
+        status.textContent = "✅ Message sent successfully!";
+        status.style.color = "green";
+        form.reset();
+      } else {
+        status.textContent = "❌ Error! Please try again.";
+        status.style.color = "red";
+      }
+    });
+  </script>
+</body>
+</html>
